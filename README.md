@@ -229,5 +229,33 @@ ishraf_ml_coursework/
 
 ---
 
+## 👨‍💻 مطور المشروع (Author & Developer)
+
+<div align="center">
+
+### **أيمن الذهبي | Ayman Al Thahbi**
+**IT Graduate | Software Developer | AI-Assisted Software Engineering**  
+*جامعة ذمار — كلية الحاسبات وتكنولوجيا المعلومات (Thamar University — Faculty of Computer and Information Technology)*
+
+[![GitHub Profile](https://img.shields.io/badge/GitHub-AymnAlthahby-181717?style=for-the-badge&logo=github)](https://github.com/AymnAlthahby)
+[![Email](https://img.shields.io/badge/Email-ayman.alzhabi.dev%40gmail.com-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayman.alzhabi.dev@gmail.com)
+[![Phone](https://img.shields.io/badge/Phone-%2B967_774_998_429-25D366?style=for-the-badge&logo=whatsapp&logoColor=white)](tel:+967774998429)
+[![Location](https://img.shields.io/badge/Location-Yemen%20🇾🇪-0077B5?style=for-the-badge)](https://maps.google.com)
+
+</div>
+
+| الخاصية | القيمة |
+| :--- | :--- |
+| **الاسم** | أيمن الذهبي (Ayman Al Thahbi) |
+| **التخصص** | تقنية المعلومات (Information Technology) |
+| **الجامعة** | جامعة ذمار (Thamar University) — كلية الحاسبات والمعلومات |
+| **التركيز المهني** | تطوير البرمجيات، هندسة تعلم الآلة والذكاء الاصطناعي (AI & Software Engineering) |
+| **GitHub** | [github.com/AymnAlthahby](https://github.com/AymnAlthahby) |
+| **البريد** | [ayman.alzhabi.dev@gmail.com](mailto:ayman.alzhabi.dev@gmail.com) |
+| **الهاتف** | `+967 774 998 429` |
+| **الموقع** | اليمن (Yemen) |
+
+---
+
 ## 📄 الترخيص (License)
 هذا المشروع مرخص بموجب رخصة [MIT License](LICENSE).
