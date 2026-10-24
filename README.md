@@ -235,7 +235,7 @@ ishraf_ml_coursework/
 
 ### **أيمن الذهبي | Ayman Al Thahbi**
 **IT Graduate | Software Developer | AI-Assisted Software Engineering**  
-*جامعة ذمار — كلية الحاسبات وتكنولوجيا المعلومات (Thamar University — Faculty of Computer and Information Technology)*
+*جامعة ذمار — كلية الحاسبات وتكنولوجيا المعلومات | متدرب في برنامج إعداد مهندسي الذكاء الاصطناعي (AI Engineer Training Program)*
 
 [![GitHub Profile](https://img.shields.io/badge/GitHub-AymnAlthahby-181717?style=for-the-badge&logo=github)](https://github.com/AymnAlthahby)
 [![Email](https://img.shields.io/badge/Email-ayman.alzhabi.dev%40gmail.com-ea4335?style=for-the-badge&logo=gmail&logoColor=white)](mailto:ayman.alzhabi.dev@gmail.com)
@@ -248,8 +248,8 @@ ishraf_ml_coursework/
 | :--- | :--- |
 | **الاسم** | أيمن الذهبي (Ayman Al Thahbi) |
 | **التخصص** | تقنية المعلومات (Information Technology) |
-| **الجامعة** | جامعة ذمار (Thamar University) — كلية الحاسبات والمعلومات |
-| **التركيز المهني** | تطوير البرمجيات، هندسة تعلم الآلة والذكاء الاصطناعي (AI & Software Engineering) |
+| **الجامعة والتأهيل** | جامعة ذمار (كلية الحاسبات وتكنولوجيا المعلومات) — **متدرب في برنامج إعداد مهندسي الذكاء الاصطناعي** |
+| **التركيز المهني** | تطوير البرمجيات، هندسة تعلم الآلة والأنظمة الذكية (Software Engineering & Machine Learning Systems) |
 | **GitHub** | [github.com/AymnAlthahby](https://github.com/AymnAlthahby) |
 | **البريد** | [ayman.alzhabi.dev@gmail.com](mailto:ayman.alzhabi.dev@gmail.com) |
 | **الهاتف** | `+967 774 998 429` |
