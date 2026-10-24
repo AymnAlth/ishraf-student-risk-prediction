@@ -11,8 +11,8 @@
 [![Docker](https://img.shields.io/badge/Docker-Ready-2496ED.svg?logo=docker&logoColor=white)](Dockerfile)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 
-> **مشروع التخرج النهائي لمسار تعلم الآلة وهندسة الذكاء الاصطناعي (End-to-End Machine Learning Capstone)**  
-> **حل هندسي متكامل من الألف إلى الياء (A to Z)** يربط بين البحث الاستكشافي، هندسة البيانات الزمنية الصارمة، التدريب المقارن لأقوى نماذج الـ Gradient Boosting، واجهة برمجية سريعة (FastAPI)، لوحة تحكم تفاعلية للمدارس (Enterprise Educational SaaS Dashboard)، وأدوات CLI وحاويات Docker جاهزة للإنتاج الفعلي.
+> **مشروع التخرج لمسار هندسة تعلم الآلة والأنظمة الذكية (Machine Learning Engineering Capstone)**  
+> بنية برمجية متخصصة في التنبؤ الاستباقي بمخاطر انقطاع الطلاب بالمدارس، تتضمن خط أنابيب بيانات زمني معزول، خوارزميات التصنيف وتدرج الأشجار (Gradient Boosting)، وخدمة استدلال عبر واجهة REST API ولوحة متابعة مدرسية مجهزة للنشر الميداني عبر Docker.
 
 ---
 
@@ -332,7 +332,7 @@ pnpm test
 | **الاسم الكامل** | أيمن الذهبي (Ayman Al Thahbi) |
 | **المؤهل الأكاديمي** | بكالوريوس تقنية معلومات — جامعة ذمار (كلية الحاسبات وتكنولوجيا المعلومات) |
 | **البرنامج التدريبي** | **برنامج إعداد مهندسي الذكاء الاصطناعي (AI Engineer Training Program)** |
-| **المشروع المقدم** | منصة إشراف للإنذار المبكر لمخاطر حضور وتسرب الطلاب (نظام متكامل A to Z) |
+| **المشروع المقدم** | نظام الإنذار المبكر لمخاطر حضور وتسرب الطلاب — منصة إشراف |
 | **المستودع الرسمي** | [github.com/AymnAlth/ishraf-student-risk-prediction](https://github.com/AymnAlth/ishraf-student-risk-prediction) |
 | **رقم الهاتف** | `+967 774 998 429` |
 | **البريد الإلكتروني** | `ayman.alzhabi.dev@gmail.com` |
