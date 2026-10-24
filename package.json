@@ -1,0 +1,28 @@
+{
+  "name": "ishraf-ml-coursework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Isolated ML coursework for the Ishraf student-risk experiment.",
+  "type": "commonjs",
+  "engines": {
+    "node": ">=24.13.1 <25"
+  },
+  "scripts": {
+    "check": "tsc --noEmit",
+    "test": "vitest run",
+    "profile:operational": "tsx src/scripts/profile-ml-data.ts",
+    "export:operational": "tsx src/scripts/export-student-risk-training-dataset.ts",
+    "generate:synthetic": "tsx src/scripts/generate-synthetic-student-risk-dataset.ts"
+  },
+  "dependencies": {
+    "pg": "^8.16.3",
+    "zod": "^4.1.11"
+  },
+  "devDependencies": {
+    "@types/node": "^24.7.2",
+    "@types/pg": "^8.15.6",
+    "tsx": "^4.20.6",
+    "typescript": "^5.9.3",
+    "vitest": "^3.2.4"
+  }
+}

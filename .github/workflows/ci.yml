@@ -1,0 +1,77 @@
+name: Ishraf ML CI/CD Pipeline
+
+on:
+  push:
+    branches: [ main, master ]
+  pull_request:
+    branches: [ main, master ]
+
+jobs:
+  test-python:
+    name: Run Python ML & API Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pytest Test Suite
+        run: |
+          pytest tests/ -v --junitxml=pytest-results.xml
+
+      - name: Test CLI Prediction
+        run: |
+          python cli.py health
+          python cli.py predict -i data/sample_student.json
+          python cli.py predict-batch -i data/sample_new_students.csv -o output.csv
+
+  test-node:
+    name: Run Vitest Data Generator Tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 22
+
+      - name: Install pnpm
+        uses: pnpm/action-setup@v4
+        with:
+          version: 11
+
+      - name: Install Node Dependencies
+        run: pnpm install --no-frozen-lockfile
+
+      - name: Run Vitest Suite
+        run: pnpm test
+
+  build-docker:
+    name: Build & Verify Docker Image
+    needs: [test-python, test-node]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build Docker Image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          push: false
+          tags: ishraf-student-risk-service:latest

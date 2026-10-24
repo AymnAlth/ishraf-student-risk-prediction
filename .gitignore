@@ -1,0 +1,40 @@
+# Environments
+.venv/
+env/
+venv/
+.env
+.env.local
+
+# Node & Build
+node_modules/
+dist/
+pnpm-lock.yaml
+
+# Python Cache & Testing
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.pytest_cache/
+.coverage
+htmlcov/
+catboost_info/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Data artifacts
+ml/artifacts/student-risk/
+ml/artifacts/student-risk-synthetic/student-risk-synthetic-training.csv
+ml/artifacts/notebook-executions/
+ml/artifacts/training-runs/student-risk-synthetic*
+ml/artifacts/training-runs/student-risk-advanced-20261023T202044Z/
+
+# Retain production model and reports
+!ml/artifacts/training-runs/latest/
+!ml/artifacts/training-runs/latest/**
+
+# OS & IDE
+.DS_Store
+Thumbs.db
+.vscode/

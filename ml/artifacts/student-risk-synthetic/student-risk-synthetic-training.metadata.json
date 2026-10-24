@@ -1,0 +1,23 @@
+{
+  "generatedAt": "2026-10-23T19:14:28.170Z",
+  "dataset": "student-risk-synthetic-training",
+  "datasetKind": "synthetic",
+  "realOperationalRecordsIncluded": false,
+  "rows": 300000,
+  "uniqueStudents": 10000,
+  "positiveLabels": 114335,
+  "negativeLabels": 185665,
+  "snapshotsPerStudent": 30,
+  "academicYearsCovered": [
+    2023,
+    2024,
+    2025
+  ],
+  "seed": "ishraf-student-risk-synthetic-v1",
+  "contract": "Matches the student-risk CSV schema, including its future-attendance label.",
+  "restrictions": [
+    "Use only for ML coursework, pipeline validation, and controlled experiments.",
+    "Do not merge with real operational records for production evaluation.",
+    "Do not use model metrics trained on this file to claim production performance."
+  ]
+}

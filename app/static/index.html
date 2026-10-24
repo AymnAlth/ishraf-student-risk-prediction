@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>منصة إشراف | نظام الإنذار المبكر لمخاطر الحضور</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header class="app-header">
+        <div class="header-container">
+            <div class="logo-area">
+                <span class="logo-badge">AI Powered</span>
+                <h1>منصة إشراف — نظام الإنذار المبكر لمخاطر الحضور</h1>
+                <p class="subtitle">Ishraf Student Attendance Risk & Early Intervention AI System</p>
+            </div>
+            <div class="status-badge" id="system-status">
+                <span class="dot"></span> جاري التحقق من النموذج...
+            </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <!-- Navigation Tabs -->
+        <div class="tabs-nav">
+            <button class="tab-btn active" onclick="switchTab('single')">📊 فحص طالب فردي</button>
+            <button class="tab-btn" onclick="switchTab('batch')">📁 معالجة دفعة طلاب (CSV)</button>
+            <button class="tab-btn" onclick="switchTab('metrics')">📈 مقاييس أداء النموذج</button>
+        </div>
+
+        <!-- TAB 1: Single Student Prediction -->
+        <section id="tab-single" class="tab-content active">
+            <div class="card preset-card">
+                <h3>نماذج تجريبية سريعة (Presets):</h3>
+                <div class="preset-buttons">
+                    <button class="btn btn-preset" onclick="loadPreset('stable')">🟢 طالب منتظم ومستقر</button>
+                    <button class="btn btn-preset" onclick="loadPreset('moderate')">🟡 طالب يعاني من مشاكل نقل</button>
+                    <button class="btn btn-preset" onclick="loadPreset('critical')">🔴 طالب معرض لخطر انقطاع حاد</button>
+                </div>
+            </div>
+
+            <div class="grid-layout">
+                <!-- Input Form -->
+                <div class="card form-card">
+                    <h2>بيانات رصد الـ 28 يوماً السابقة</h2>
+                    <form id="prediction-form" onsubmit="handleSinglePredict(event)">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>معرف الطالب (HMAC Key):</label>
+                                <input type="text" id="student_key" value="STUDENT_DEMO_001" required>
+                            </div>
+                            <div class="form-group">
+                                <label>الصف الدراسي (Grade):</label>
+                                <select id="grade_level_id">
+                                    <option value="1">الصف الأول الابتدائي</option>
+                                    <option value="2">الصف الثاني الابتدائي</option>
+                                    <option value="3" selected>الصف الثالث الابتدائي</option>
+                                    <option value="4">الصف الرابع الابتدائي</option>
+                                    <option value="5">الصف الخامس الابتدائي</option>
+                                    <option value="6">الصف السادس الابتدائي</option>
+                                    <option value="7">الصف الأول الإعدادي</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <!-- Section: Attendance -->
+                        <h4 class="section-title">سجل الحضور والغياب (Lookback Attendance)</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>أيام الرصد:</label>
+                                <input type="number" id="lookback_attendance_records" value="20" min="1" max="25" required>
+                            </div>
+                            <div class="form-group">
+                                <label>أيام الحضور (Present):</label>
+                                <input type="number" id="lookback_present_count" value="18" min="0" max="25" required>
+                            </div>
+                            <div class="form-group">
+                                <label>أيام الغياب (Absent):</label>
+                                <input type="number" id="lookback_absent_count" value="1" min="0" max="25" required>
+                            </div>
+                            <div class="form-group">
+                                <label>مرات التأخر (Late):</label>
+                                <input type="number" id="lookback_late_count" value="1" min="0" max="10">
+                            </div>
+                        </div>
+
+                        <!-- Section: Assessment -->
+                        <h4 class="section-title">التحصيل الأكاديمي (Academic Performance)</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>عدد التقييمات والاختبارات:</label>
+                                <input type="number" id="lookback_assessment_count" value="3" min="0" max="10">
+                            </div>
+                            <div class="form-group">
+                                <label>متوسط الدرجات (%):</label>
+                                <input type="number" id="lookback_assessment_average_percent" value="82.5" min="0" max="100" step="0.1">
+                            </div>
+                            <div class="form-group">
+                                <label>أدنى درجة مسجلة (%):</label>
+                                <input type="number" id="lookback_assessment_minimum_percent" value="75.0" min="0" max="100" step="0.1">
+                            </div>
+                        </div>
+
+                        <!-- Section: Homework -->
+                        <h4 class="section-title">انضباط الواجبات (Homework Discipline)</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>الواجبات المستحقة:</label>
+                                <input type="number" id="lookback_homework_due_count" value="5" min="0" max="15">
+                            </div>
+                            <div class="form-group">
+                                <label>الواجبات المنجزة:</label>
+                                <input type="number" id="lookback_homework_completed_count" value="4" min="0" max="15">
+                            </div>
+                            <div class="form-group">
+                                <label>الواجبات المفقودة (Missing):</label>
+                                <input type="number" id="lookback_homework_missing_count" value="1" min="0" max="15">
+                            </div>
+                        </div>
+
+                        <!-- Section: Behavior & Transport -->
+                        <h4 class="section-title">السلوك والنقل المدرسي (Behavior & Transport)</h4>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>المخالفات السلوكية:</label>
+                                <input type="number" id="lookback_negative_behavior_count" value="0" min="0" max="10">
+                            </div>
+                            <div class="form-group">
+                                <label>مجموع شدة المخالفات:</label>
+                                <input type="number" id="lookback_negative_behavior_severity_sum" value="0" min="0" max="20">
+                            </div>
+                            <div class="form-group">
+                                <label>السلوكيات الإيجابية:</label>
+                                <input type="number" id="lookback_positive_behavior_count" value="2" min="0" max="10">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label>مشترك بحافلة المدرسة:</label>
+                                <select id="transport_assigned_at_snapshot">
+                                    <option value="true" selected>نعم</option>
+                                    <option value="false">لا</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>مرات ركوب الحافلة:</label>
+                                <input type="number" id="lookback_transport_boarded_count" value="14" min="0" max="30">
+                            </div>
+                            <div class="form-group">
+                                <label>مرات الغياب عن الحافلة:</label>
+                                <input type="number" id="lookback_transport_absent_count" value="1" min="0" max="20">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="btn btn-primary btn-block">🚀 تحليل مخاطر الطالب الآن</button>
+                    </form>
+                </div>
+
+                <!-- Result Display -->
+                <div class="card result-card" id="result-display">
+                    <h2>نتيجة التحليل التنبؤي</h2>
+                    <div class="placeholder-text" id="empty-state">
+                        <p>اضغط على زر "تحليل مخاطر الطالب" أو اختر نموذجاً تجريبياً لعرض التقييم الفوري.</p>
+                    </div>
+
+                    <div id="result-content" style="display: none;">
+                        <div class="gauge-container">
+                            <div class="risk-meter" id="risk-meter">
+                                <span class="risk-val" id="res-prob">--%</span>
+                                <span class="risk-caption">احتمالية الخطر</span>
+                            </div>
+                            <div class="risk-badge" id="res-badge">--</div>
+                        </div>
+
+                        <div class="details-section">
+                            <h4>🔍 أسباب وعوامل الخطر المرصودة:</h4>
+                            <ul id="res-factors" class="factors-list"></ul>
+
+                            <h4>🛡️ توصيات التدخل الاستباقي المقترحة:</h4>
+                            <ul id="res-actions" class="actions-list"></ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 2: Batch CSV Upload -->
+        <section id="tab-batch" class="tab-content">
+            <div class="card">
+                <h2>معالجة ملف جماعي للطلاب (Batch CSV Evaluation)</h2>
+                <p>قم برفع ملف CSV يحتوي على سجلات الطلاب وسيقوم النظام بتطبيق هندسة الميزات وحساب احتمالية الخطر لكل طالب وتوليد ملف جديد قابل للتنزيل.</p>
+
+                <div class="upload-zone" id="drop-zone" onclick="document.getElementById('csv-file').click()">
+                    <span class="upload-icon">📂</span>
+                    <p>انقر لاختيار ملف CSV أو اسحبه وأفلته هنا</p>
+                    <input type="file" id="csv-file" accept=".csv" style="display: none;" onchange="handleFileSelect(event)">
+                    <span id="selected-file-name" class="file-name"></span>
+                </div>
+
+                <button class="btn btn-primary" id="btn-upload-csv" onclick="uploadCsvFile()" disabled>⚡ معالجة الملف وتنزيل النتائج</button>
+
+                <div id="batch-results-area" style="display: none; margin-top: 2rem;">
+                    <h3>ملخص نتائج المعالجة:</h3>
+                    <div class="stats-grid" id="batch-stats"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- TAB 3: Model Metrics & Governance -->
+        <section id="tab-metrics" class="tab-content">
+            <div class="card">
+                <h2>مصفوفة أداء النموذج والعدالة التربوية (Model Governance)</h2>
+                <div class="stats-grid">
+                    <div class="stat-box">
+                        <span class="stat-number">0.9200</span>
+                        <span class="stat-label">ROC-AUC Test Score</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">0.8752</span>
+                        <span class="stat-label">PR-AUC Test Score</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">84.62%</span>
+                        <span class="stat-label">حساسية الكشف (Recall)</span>
+                    </div>
+                    <div class="stat-box">
+                        <span class="stat-number">0.3854</span>
+                        <span class="stat-label">العتبة المثلى للتدخل</span>
+                    </div>
+                </div>
+
+                <div class="governance-rules">
+                    <h3>🛡️ ميثاق التدخل التربوي الأخلاقي (Ethics & Safeguards):</h3>
+                    <ul>
+                        <li><strong>منع التسرب الكامل:</strong> تم عزل نافذة التنبؤ المستقبلية (14 يوماً) واستبعاد كافة المعرفات من النموذج.</li>
+                        <li><strong>الإنسان في الحلقة (Human-in-the-Loop):</strong> تنبيهات النظام استرشادية للمشرفين وليست قرارات آلية ملزمة.</li>
+                        <li><strong>حظر العقوبات الآلية:</strong> يُحظر تماماً استخدام التنبؤ لفرض أي إجراء عقابي بحق الطالب.</li>
+                        <li><strong>تكافؤ العدالة:</strong> حساسية الكشف مستقرة عبر جميع المراحل الدراسية من الصف الأول حتى السابع بنسبة (83.2% - 85.9%).</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="/static/app.js"></script>
+</body>
+</html>
